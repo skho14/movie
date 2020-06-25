@@ -1,11 +1,16 @@
 import React from 'react'
-import { StyleSheet , View , Text ,Image } from 'react-native'
+import { StyleSheet , View , Text , Image , TouchableOpacity} from 'react-native'
+import filmsData from '../Helpers/filmsData'
+
 
 class FilmItem extends React.Component {
     render() {
-        const film = this.props.film
+        const { film, displayDetailForFilm } = this.props
         return(
-            <View style={styles.main_container}>
+            <TouchableOpacity 
+              style={styles.main_container}
+              onPress={()=>displayDetailForFilm(film.id)}>
+
                 <Image
                     style={styles.image}
                     source={{uri:"image"}}
@@ -19,10 +24,10 @@ class FilmItem extends React.Component {
                         <Text style={styles.description_text}  numberOfLines={5}>{film.overview}</Text>
                     </View>
                     <View style={styles.data_container}>
-                        <Text style={styles.date_text}>Sorti le {film.realease_date}</Text>
+                        <Text style={styles.date_text}>Sorti le {film.release_date}</Text>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 }
